@@ -1,0 +1,1 @@
+A mocker in golang.
