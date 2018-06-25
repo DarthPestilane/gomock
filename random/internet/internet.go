@@ -1,10 +1,13 @@
 package internet
 
 import (
+	"crypto/md5"
+	"encoding/binary"
 	"fmt"
 	"github.com/DarthPestilane/gofake/helper"
 	"github.com/DarthPestilane/gofake/random/basic"
 	"github.com/DarthPestilane/gofake/random/name"
+	"net"
 	"strings"
 )
 
@@ -50,6 +53,7 @@ func DomainName() string {
 }
 
 // Url
+// example "(http|https)://[www.]clark.(com|top|cc...)/[path][.html]"
 func Url() string {
 	hasWWW := basic.Bool()
 	shouldHTTPS := basic.Bool()
@@ -79,5 +83,53 @@ func Url() string {
 func MacAddr() string {
 	from := append(basic.Upper, basic.NumsStr...)
 	meta := basic.String(basic.OptionString{MaxLen: 12, MinLen: 12, FromChars: strings.Join(from, "")})
-	return fmt.Sprintf("%s:%s:%s:%s:%s:%s", meta[0:2], meta[2:4], meta[4:6], meta[6:8], meta[8:10], meta[10:12])
+	return split(meta, 2, ":")
+}
+
+// IPv4
+// example "12.23.45.76"
+func IPv4() string {
+	long := basic.Int(basic.OptionNumber{Min: int(ip2long("1.0.0.1")), Max: int(ip2long("255.255.255.254"))})
+	return long2ip(uint32(long))
+}
+
+// IPv6
+// example "05d2:1d4c:0802:ec87:12c7:ca94:e78e:ca2a"
+func IPv6() string {
+	meta := fmt.Sprintf("%x", md5.Sum([]byte(basic.String())))
+	return split(meta, 4, ":")
+}
+
+// LocalIPv4
+// example "10.0.1.12" or "192.168.1.10"
+func LocalIPv4() string {
+	var long int
+	if basic.Bool() {
+		long = basic.Int(basic.OptionNumber{Min: int(ip2long("10.0.0.1")), Max: int(ip2long("10.255.255.254"))})
+	} else {
+		long = basic.Int(basic.OptionNumber{Min: int(ip2long("192.168.0.1")), Max: int(ip2long("192.168.255.254"))})
+	}
+	return long2ip(uint32(long))
+}
+
+func long2ip(long uint32) string {
+	ipByte := make([]byte, 4)
+	binary.BigEndian.PutUint32(ipByte, long)
+	ip := net.IP(ipByte)
+	return ip.String()
+}
+
+func ip2long(ipAddr string) uint32 {
+	ip := net.ParseIP(ipAddr)
+	ip = ip.To4()
+	return binary.BigEndian.Uint32(ip)
+}
+
+func split(from string, step int, concat string) string {
+	length := len(from)
+	arr := []string{}
+	for i := 0; i < length; i += step {
+		arr = append(arr, from[i:i+step])
+	}
+	return strings.Join(arr, concat)
 }
