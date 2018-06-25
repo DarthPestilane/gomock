@@ -1,4 +1,4 @@
-# A easy fake data generator in golang
+# An easy fake data generator in golang
 
 `go get -u github.com/DarthPestilane/gofake`
 
