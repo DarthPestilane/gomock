@@ -1,0 +1,19 @@
+language: go
+
+go:
+  - 1.8
+  - 1.9
+  - 1.10
+  - master
+  - tip
+
+before_install:
+  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+
+install:
+  - dep ensure
+
+script:
+  - go build
+  - go vet ./...
+  - go test -count=1 ./...
