@@ -24,7 +24,7 @@ func (*Faker) Name(middleName ...string) string {
 	return name.Name(option)
 }
 
-func (m *Faker) NameMale(middleName ...string) string {
+func (f *Faker) NameMale(middleName ...string) string {
 	var n string
 	if len(middleName) > 0 {
 		n = middleName[0]
@@ -36,7 +36,7 @@ func (m *Faker) NameMale(middleName ...string) string {
 	return name.Name(option)
 }
 
-func (m *Faker) NameFemale(middleName ...string) string {
+func (f *Faker) NameFemale(middleName ...string) string {
 	var n string
 	if len(middleName) > 0 {
 		n = middleName[0]
@@ -48,86 +48,98 @@ func (m *Faker) NameFemale(middleName ...string) string {
 	return name.Name(option)
 }
 
-func (m *Faker) Bool() bool {
+func (f *Faker) Bool() bool {
 	return basic.Bool()
 }
 
-func (m *Faker) Int() int {
+func (f *Faker) Int() int {
 	return basic.Int()
 }
 
-func (m *Faker) IntBetween(begin, end int) int {
+func (f *Faker) IntBetween(begin, end int) int {
 	return basic.Int(basic.OptionNumber{Min: begin, Max: end})
 }
 
-func (m *Faker) Natural() int {
+func (f *Faker) Natural() int {
 	return basic.Natural()
 }
 
-func (m *Faker) NaturalBetween(begin, end int) int {
+func (f *Faker) NaturalBetween(begin, end int) int {
 	return basic.Natural(basic.OptionNumber{Max: end, Min: begin})
 }
 
-func (m *Faker) Float() float64 {
+func (f *Faker) Float() float64 {
 	return basic.Float()
 }
 
-func (m *Faker) FloatBetween(begin, end int) float64 {
+func (f *Faker) FloatBetween(begin, end int) float64 {
 	return basic.Float(basic.OptionNumber{Max: end, Min: begin})
 }
 
-func (m *Faker) FloatWithDecimal(minDecimalLen, maxDecimalLen int) float64 {
+func (f *Faker) FloatWithDecimal(minDecimalLen, maxDecimalLen int) float64 {
 	return basic.Float(basic.OptionNumber{Max: math.MaxInt32, Min: math.MinInt32, MaxDecimal: maxDecimalLen, MinDecimal: minDecimalLen})
 }
 
-func (m *Faker) FloatBetweenWithDecimal(begin, end, minDecimalLen, maxDecimalLen int) float64 {
+func (f *Faker) FloatBetweenWithDecimal(begin, end, minDecimalLen, maxDecimalLen int) float64 {
 	return basic.Float(basic.OptionNumber{Max: end, Min: begin, MaxDecimal: maxDecimalLen, MinDecimal: minDecimalLen})
 }
 
-func (m *Faker) Char() string {
+func (f *Faker) Char() string {
 	return basic.Char()
 }
 
-func (m *Faker) CharFrom(str string) string {
+func (f *Faker) CharFrom(str string) string {
 	return basic.Char(str)
 }
 
-func (m *Faker) String() string {
+func (f *Faker) String() string {
 	return basic.String()
 }
 
-func (m *Faker) StringFrom(str string) string {
+func (f *Faker) StringFrom(str string) string {
 	return basic.String(basic.OptionString{FromChars: str})
 }
 
-func (m *Faker) StringWithLength(min, max int) string {
+func (f *Faker) StringWithLength(min, max int) string {
 	return basic.String(basic.OptionString{MinLen: min, MaxLen: max})
 }
 
-func (m *Faker) StringWithLengthFrom(min, max int, str string) string {
+func (f *Faker) StringWithLengthFrom(min, max int, str string) string {
 	return basic.String(basic.OptionString{MinLen: min, MaxLen: max, FromChars: str})
 }
 
-func (m *Faker) Email() string {
+func (f *Faker) Email() string {
 	return internet.Email()
 }
 
-func (m *Faker) EmailWithDomain(domain string) string {
+func (f *Faker) EmailWithDomain(domain string) string {
 	return internet.Email(domain)
 }
 
-func (m *Faker) DomainName() string {
+func (f *Faker) DomainName() string {
 	return internet.DomainName()
 }
 
-func (m *Faker) DomainWord() string {
+func (f *Faker) DomainWord() string {
 	return internet.DomainWord()
 }
 
-func (m *Faker) Url() string {
+func (f *Faker) Url() string {
 	return internet.Url()
 }
 
-func (m *Faker) MacAddr() string {
+func (f *Faker) MacAddr() string {
 	return internet.MacAddr()
+}
+
+func (f *Faker) IPv4() string {
+	return internet.IPv4()
+}
+
+func (f *Faker) IPv6() string {
+	return internet.IPv6()
+}
+
+func (f *Faker) LocalIPv4() string {
+	return internet.LocalIPv4()
 }
