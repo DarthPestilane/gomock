@@ -2,6 +2,7 @@ package gomock
 
 import (
 	"github.com/DarthPestilane/gomock/random/basic"
+	"github.com/DarthPestilane/gomock/random/internet"
 	"github.com/DarthPestilane/gomock/random/name"
 	"math"
 )
@@ -106,4 +107,24 @@ func (m *Mocker) StringWithLength(min, max int) string {
 
 func (m *Mocker) StringWithLengthFrom(min, max int, str string) string {
 	return basic.String(basic.OptionString{MinLen: min, MaxLen: max, FromChars: str})
+}
+
+func (m *Mocker) Email() string {
+	return internet.Email()
+}
+
+func (m *Mocker) EmailWithDomain(domain string) string {
+	return internet.Email(domain)
+}
+
+func (m *Mocker) DomainName() string {
+	return internet.DomainName()
+}
+
+func (m *Mocker) DomainWord() string {
+	return internet.DomainWord()
+}
+
+func (m *Mocker) Url() string {
+	return internet.Url()
 }
