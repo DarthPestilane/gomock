@@ -2,7 +2,7 @@
 
 `go get -u github.com/DarthPestilane/gofake`
 
-## example
+## Example
 
 ```go
 faker := gofake.NewFaker()
@@ -14,3 +14,7 @@ faker.NameFemale("middle name") // => a random female name with middle name
 
 // ... for other functions checkout faker.go
 ```
+
+## Contribute
+
+Feel free to PR
