@@ -2,7 +2,7 @@ package name
 
 import (
 	"fmt"
-	"github.com/DarthPestilane/gomock/helper"
+	"github.com/DarthPestilane/gofake/helper"
 )
 
 var (

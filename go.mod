@@ -1,3 +1,3 @@
-module github.com/DarthPestilane/gomock
+module github.com/DarthPestilane/gofake
 
 // vgo: no requirements found in Gopkg.lock

@@ -1,16 +1,16 @@
-# A mocker in golang.
+# A easy fake data generator in golang
 
-`go get -u github.com/DarthPestilane/gomock`
+`go get -u github.com/DarthPestilane/gofake`
 
 ## example
 
 ```go
-mocker := gomock.NewMock()
+faker := gofake.NewFaker()
 
-mocker.Name() // => a random name
-mocker.Name("middle name") // => a random name with middle name
-mocker.NameFemale() // => a random female name
-mocker.NameFemale("middle name") // => a random female name with middle name
+faker.Name() // => a random name
+faker.Name("middle name") // => a random name with middle name
+faker.NameFemale() // => a random female name
+faker.NameFemale("middle name") // => a random female name with middle name
 
-// ... for other functions checkout mock_test.go
+// ... for other functions checkout faker.go
 ```

@@ -1,19 +1,19 @@
-package gomock
+package gofake
 
 import (
-	"github.com/DarthPestilane/gomock/random/basic"
-	"github.com/DarthPestilane/gomock/random/internet"
-	"github.com/DarthPestilane/gomock/random/name"
+	"github.com/DarthPestilane/gofake/random/basic"
+	"github.com/DarthPestilane/gofake/random/internet"
+	"github.com/DarthPestilane/gofake/random/name"
 	"math"
 )
 
-type Mocker struct{}
+type Faker struct{}
 
-func NewMock() *Mocker {
-	return new(Mocker)
+func NewFaker() *Faker {
+	return new(Faker)
 }
 
-func (*Mocker) Name(middleName ...string) string {
+func (*Faker) Name(middleName ...string) string {
 	var n string
 	if len(middleName) > 0 {
 		n = middleName[0]
@@ -22,10 +22,9 @@ func (*Mocker) Name(middleName ...string) string {
 		MiddleName: n,
 	}
 	return name.Name(option)
-
 }
 
-func (m *Mocker) NameMale(middleName ...string) string {
+func (m *Faker) NameMale(middleName ...string) string {
 	var n string
 	if len(middleName) > 0 {
 		n = middleName[0]
@@ -37,7 +36,7 @@ func (m *Mocker) NameMale(middleName ...string) string {
 	return name.Name(option)
 }
 
-func (m *Mocker) NameFemale(middleName ...string) string {
+func (m *Faker) NameFemale(middleName ...string) string {
 	var n string
 	if len(middleName) > 0 {
 		n = middleName[0]
@@ -49,82 +48,82 @@ func (m *Mocker) NameFemale(middleName ...string) string {
 	return name.Name(option)
 }
 
-func (m *Mocker) Bool() bool {
+func (m *Faker) Bool() bool {
 	return basic.Bool()
 }
 
-func (m *Mocker) Int() int {
+func (m *Faker) Int() int {
 	return basic.Int()
 }
 
-func (m *Mocker) IntBetween(begin, end int) int {
+func (m *Faker) IntBetween(begin, end int) int {
 	return basic.Int(basic.OptionNumber{Min: begin, Max: end})
 }
 
-func (m *Mocker) Natural() int {
+func (m *Faker) Natural() int {
 	return basic.Natural()
 }
 
-func (m *Mocker) NaturalBetween(begin, end int) int {
+func (m *Faker) NaturalBetween(begin, end int) int {
 	return basic.Natural(basic.OptionNumber{Max: end, Min: begin})
 }
 
-func (m *Mocker) Float() float64 {
+func (m *Faker) Float() float64 {
 	return basic.Float()
 }
 
-func (m *Mocker) FloatBetween(begin, end int) float64 {
+func (m *Faker) FloatBetween(begin, end int) float64 {
 	return basic.Float(basic.OptionNumber{Max: end, Min: begin})
 }
 
-func (m *Mocker) FloatWithDecimal(minDecimalLen, maxDecimalLen int) float64 {
+func (m *Faker) FloatWithDecimal(minDecimalLen, maxDecimalLen int) float64 {
 	return basic.Float(basic.OptionNumber{Max: math.MaxInt32, Min: math.MinInt32, MaxDecimal: maxDecimalLen, MinDecimal: minDecimalLen})
 }
 
-func (m *Mocker) FloatBetweenWithDecimal(begin, end, minDecimalLen, maxDecimalLen int) float64 {
+func (m *Faker) FloatBetweenWithDecimal(begin, end, minDecimalLen, maxDecimalLen int) float64 {
 	return basic.Float(basic.OptionNumber{Max: end, Min: begin, MaxDecimal: maxDecimalLen, MinDecimal: minDecimalLen})
 }
 
-func (m *Mocker) Char() string {
+func (m *Faker) Char() string {
 	return basic.Char()
 }
 
-func (m *Mocker) CharFrom(str string) string {
+func (m *Faker) CharFrom(str string) string {
 	return basic.Char(str)
 }
 
-func (m *Mocker) String() string {
+func (m *Faker) String() string {
 	return basic.String()
 }
 
-func (m *Mocker) StringFrom(str string) string {
+func (m *Faker) StringFrom(str string) string {
 	return basic.String(basic.OptionString{FromChars: str})
 }
 
-func (m *Mocker) StringWithLength(min, max int) string {
+func (m *Faker) StringWithLength(min, max int) string {
 	return basic.String(basic.OptionString{MinLen: min, MaxLen: max})
 }
 
-func (m *Mocker) StringWithLengthFrom(min, max int, str string) string {
+func (m *Faker) StringWithLengthFrom(min, max int, str string) string {
 	return basic.String(basic.OptionString{MinLen: min, MaxLen: max, FromChars: str})
 }
 
-func (m *Mocker) Email() string {
+func (m *Faker) Email() string {
 	return internet.Email()
 }
 
-func (m *Mocker) EmailWithDomain(domain string) string {
+func (m *Faker) EmailWithDomain(domain string) string {
 	return internet.Email(domain)
 }
 
-func (m *Mocker) DomainName() string {
+func (m *Faker) DomainName() string {
 	return internet.DomainName()
 }
 
-func (m *Mocker) DomainWord() string {
+func (m *Faker) DomainWord() string {
 	return internet.DomainWord()
 }
 
-func (m *Mocker) Url() string {
+func (m *Faker) Url() string {
 	return internet.Url()
 }

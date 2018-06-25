@@ -2,7 +2,7 @@ package basic
 
 import (
 	"fmt"
-	"github.com/DarthPestilane/gomock/helper"
+	"github.com/DarthPestilane/gofake/helper"
 	"math"
 	"strconv"
 	"strings"

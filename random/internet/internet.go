@@ -2,9 +2,9 @@ package internet
 
 import (
 	"fmt"
-	"github.com/DarthPestilane/gomock/helper"
-	"github.com/DarthPestilane/gomock/random/basic"
-	"github.com/DarthPestilane/gomock/random/name"
+	"github.com/DarthPestilane/gofake/helper"
+	"github.com/DarthPestilane/gofake/random/basic"
+	"github.com/DarthPestilane/gofake/random/name"
 	"strings"
 )
 
