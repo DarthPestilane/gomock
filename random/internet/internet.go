@@ -73,3 +73,11 @@ func Url() string {
 	}
 	return url
 }
+
+// MacAddr
+// example "32:F1:39:2F:D6:18"
+func MacAddr() string {
+	from := append(basic.Upper, basic.NumsStr...)
+	meta := basic.String(basic.OptionString{MaxLen: 12, MinLen: 12, FromChars: strings.Join(from, "")})
+	return fmt.Sprintf("%s:%s:%s:%s:%s:%s", meta[0:2], meta[2:4], meta[4:6], meta[6:8], meta[8:10], meta[10:12])
+}

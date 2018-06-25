@@ -127,3 +127,7 @@ func (m *Faker) DomainWord() string {
 func (m *Faker) Url() string {
 	return internet.Url()
 }
+
+func (m *Faker) MacAddr() string {
+	return internet.MacAddr()
+}

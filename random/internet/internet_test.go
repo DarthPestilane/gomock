@@ -27,3 +27,12 @@ func TestUrl(t *testing.T) {
 		}
 	}
 }
+
+func TestMacAddr(t *testing.T) {
+	for i := 0; i < 100; i++ {
+		u := MacAddr()
+		if u == "" || len(u) != 17 {
+			t.Fail()
+		}
+	}
+}
